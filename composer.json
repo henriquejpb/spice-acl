@@ -1,0 +1,21 @@
+{
+    "name": "henriquejpb/spice-acl",
+    "description": "ACL module from Spice framework",
+    "license": "MIT",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "Henrique Barcelos",
+            "email": "rick.hjpbarcelos@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "Spice": ["src", "test/unit"]
+        }
+    }
+}
