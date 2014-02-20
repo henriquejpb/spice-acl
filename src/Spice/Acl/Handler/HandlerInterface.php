@@ -7,24 +7,37 @@
  */
 namespace Spice\Acl\Handler;
 
-use \Spice\Acl\AccessDeniedException;
+use Spice\Acl\DeniedAccessException;
+use Spice\Acl\Role\RoleInterface;
 
 /**
  * Interface for ACL handlers.
  */
 interface HandlerInterface {
     /**
-     * Adds a role to the control list.
+     * Adds a role to the handler.
      *
-     * @param string $roleName
-     *            The name of the role.
-     * @param string $extends
-     *            [Optional] if the new role extends its privileges
-     *            from other one, indicate which one in this parameter.
+     * @param \Spice\Acl\Role\RoleInterface $role
      *            
      * @return void
      */
-    public function addRole($roleName, $extends = null);
+    public function addRole(RoleInterface $role);
+    
+    /**
+     * Verifies if a role exists within the handler.
+     * 
+     * @param string $roleName The role name;
+     * 
+     * @return boolean
+     */
+    public function hasRole($roleName);
+    
+    /**
+     * Retrives all handled roles.
+     * 
+     * @return array of \Spice\Acl\Role\RoleInterface
+     */
+    public function getRoles();
     
     /**
      * Adds a resource that will be access controlled.
@@ -36,6 +49,15 @@ interface HandlerInterface {
     public function addResource($resourceName);
     
     /**
+     * Verifies if there is a resource registered within the handler.
+     * 
+     * @param string $resourceName
+     * 
+     * @return boolean
+     */
+    public function hasResource($resourceName);
+    
+    /**
      * Removes a resource from the list.
      *
      * @param string $resourceName            
@@ -43,6 +65,13 @@ interface HandlerInterface {
      * @return void
      */
     public function removeResource($resourceName);
+    
+    /**
+     * Retrives the handled resources.
+     * 
+     * @return array of string
+     */
+    public function getResources();
     
     /**
      * Allows a role to access a resource.
@@ -53,6 +82,11 @@ interface HandlerInterface {
      *            The name of the resource.
      *            
      * @return void
+     * 
+     * @throws \InvalidParameterException If there is no such role
+     *          as `$roleName`
+     * @throws \InvalidParameterException If there is no such resource
+     *          as `$resourceName`
      */
     public function allow($roleName, $resourceName);
     
@@ -63,6 +97,11 @@ interface HandlerInterface {
      * @param string $resourceName            
      *
      * @return void
+     * 
+     * @throws \InvalidParameterException If there is no such role
+     *          as `$roleName`
+     * @throws \InvalidParameterException If there is no such resource
+     *          as `$resourceName`
      */
     public function deny($roleName, $resourceName);
     
@@ -74,7 +113,7 @@ interface HandlerInterface {
      *
      * @return void
      *
-     * @throws \Spice\Acl\AccessDeniedException If the role
+     * @throws \Spice\Acl\DeniedAccessException If the role
      *         does not have access to the resource.
      * @throws \InvalidParameterException If there is no such role
      *          as `$roleName`
