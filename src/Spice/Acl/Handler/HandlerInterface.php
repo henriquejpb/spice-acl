@@ -5,7 +5,9 @@
  * 
  * @author Henrique Barcelos <rick.hjpbarcelos@gmail.com
  */
-namespace Spice\Acl;
+namespace Spice\Acl\Handler;
+
+use \Spice\Acl\AccessDeniedException;
 
 /**
  * Interface for ACL handlers.
