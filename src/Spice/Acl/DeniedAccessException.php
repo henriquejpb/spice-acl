@@ -9,6 +9,6 @@ namespace Spice\Acl;
 /**
  * Thrown when access to a resource is denied to a user. 
  */
-class AccessDeniedException extends \RuntimeException {
+class DeniedAccessException extends \RuntimeException {
 
 }
