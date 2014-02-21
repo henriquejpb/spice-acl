@@ -78,7 +78,7 @@ interface HandlerInterface {
      *
      * @param string $roleName
      *            The name of the role.
-     * @param unknown $resourceName
+     * @param string $resourceName
      *            The name of the resource.
      *            
      * @return void
