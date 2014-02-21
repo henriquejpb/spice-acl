@@ -1,5 +1,5 @@
-spice-acl
-=========
+# spice-acl [![Build Status](https://travis-ci.org/henriquejpb/spice-acl.png?branch=master)](https://travis-ci.org/henriquejpb/spice-acl)#
+
 Access Control List component of Spice Framework
 
 ## Usage
