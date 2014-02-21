@@ -1,16 +1,41 @@
 <?php
+/**
+ * ACL handler default implementation.
+ *  
+ * @author Henrique Barcelos <rick.hjpbarcelos@gmail.com>
+ */
 namespace Spice\Acl\Handler;
 
 use Spice\Acl\DeniedAccessException;
 use Spice\Acl\Role\RoleInterface;
 
+/**
+ * ACL handler default implementation.
+ */
 class Handler implements HandlerInterface {
+    /**
+     * @var array of Spice\Acl\Role\RoleInterface
+     */
     private $roles = array();
+    
+    /**
+     * @var array of string
+     */
     private $resources = array();
+    
+    /**
+     * @var array
+     */
     private $allowMap = array();
+    
+    /**
+     * @var array
+     * @var unknown
+     */
     private $denyMap = array();
 
-    /** (non-PHPdoc)
+    /** 
+     * (non-PHPdoc)
      * @see \Spice\Acl\Handler\HandlerInterface::addRole()
      */
     public function addRole(RoleInterface $role) {
@@ -141,7 +166,7 @@ class Handler implements HandlerInterface {
      * 
      * @return boolean
      * 
-     * @throws DeniedAccessException
+     * @throws \Spice\Acl\DeniedAccessException
      */
     private function doCheck($roleName, $resourceName) {
         $this->checkResourceExists($resourceName);
