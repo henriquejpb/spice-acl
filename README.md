@@ -140,7 +140,7 @@ $handler->allow('admin', 'my_secret_resource');
 $handler->deny('admin', 'just_for_regular_users_resource');
 
 try {
-	$handler->chech('user', 'my_secret_resoruce');
+	$handler->check('user', 'my_secret_resoruce');
 } catch (DeniedAccessException $e) {
     die('Permission Denied!');
 }
